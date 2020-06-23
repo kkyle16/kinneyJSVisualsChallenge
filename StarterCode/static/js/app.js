@@ -73,7 +73,17 @@ d3.json("./samples.json").then((importedData) => {
     //---------------Update--------------------
     dropdown.on("change", updatePlotly);
 
-    function updatePlotly {
+    function updatePlotly() {
+        var dropDownMenu = d3.select("#selDataset");
+        var dropDownValue = dropDownMenu.property("value");
+        console.log(dropDownValue);
+
+        var sample = samples.filter(samples => samples.id === dropDownValue)
+        console.log(sample)
+
+        var new_ids = sample[0].otu_ids;
+        console.log(new_ids)
+
 
     }
 });
