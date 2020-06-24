@@ -67,12 +67,21 @@ d3.json("./samples.json").then((importedData) => {
         Plotly.newPlot('bubble', data2, layout2)
 
         //-------------Demographic Info-------------
-        var demo_dict = data.metadata[0];
+        var metaData = data.metadata;
+        var person = parseInt(id);
+        console.log(person);
+        var demoInfo = metaData.filter(data => data.id === person)
+        var demo_dict = demoInfo[0];
+        console.log(demoInfo);
+        
+        // var demo_dict = data.metadata[0];
         console.log(Object.entries(demo_dict));
 
         var info = d3.select("#sample-metadata")
+        info.html("");
+        info.append("ul");
         Object.entries(demo_dict).forEach(i => {
-            info.append("p")
+            info.append("li")
                 .text(`${i[0]}: ${i[1]}`);
         });
     }
